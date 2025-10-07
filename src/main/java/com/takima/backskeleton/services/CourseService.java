@@ -1,7 +1,7 @@
 package com.takima.backskeleton.services;
 
 import com.takima.backskeleton.DAO.CourseDao;
-import com.takima.backskeleton.models.Course;
+import com.takima.backskeleton.models.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class CourseService {
         this.courseDao = courseDao;
     }
 
-    public List<Course> findAll() {
+    public List<User> findAll() {
         return courseDao.findAll();
     }
 }

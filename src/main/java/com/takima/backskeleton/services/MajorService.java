@@ -1,8 +1,8 @@
 package com.takima.backskeleton.services;
 
 import com.takima.backskeleton.DAO.MajorDao;
-import com.takima.backskeleton.models.Major;
-import com.takima.backskeleton.models.Student;
+import com.takima.backskeleton.models.Portfolio;
+import com.takima.backskeleton.models.Template;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,14 +16,14 @@ public class MajorService {
         this.majorDao = majorDao;
     }
 
-    public List<Major> findAll() {
-        Iterable<Major> it = majorDao.findAll();
-        List <Major> majors = new ArrayList<>();
+    public List<Portfolio> findAll() {
+        Iterable<Portfolio> it = majorDao.findAll();
+        List <Portfolio> majors = new ArrayList<>();
         it.forEach(majors::add);
         return majors;
     }
 
-    public List<Student> getStudentsOfMajor(Long id) {
+    public List<Template> getStudentsOfMajor(Long id) {
         return majorDao.getAllStudentsFromMajor(id);
     }
 }

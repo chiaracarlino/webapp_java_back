@@ -3,7 +3,7 @@ package com.takima.backskeleton.services;
 import com.takima.backskeleton.DAO.StudentDao;
 import com.takima.backskeleton.DTO.StudentDto;
 import com.takima.backskeleton.DTO.StudentMapper;
-import com.takima.backskeleton.models.Student;
+import com.takima.backskeleton.models.Template;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,14 +20,14 @@ public class StudentService {
         this.studentDao = studentDao;
     }
 
-    public List<Student> findAll() {
-        Iterable<Student> it = studentDao.findAll();
-        List <Student> users = new ArrayList<>();
+    public List<Template> findAll() {
+        Iterable<Template> it = studentDao.findAll();
+        List <Template> users = new ArrayList<>();
         it.forEach(users::add);
         return users ;
     }
 
-    public Student getById(Long id) {
+    public Template getById(Long id) {
         return studentDao.findById(id).orElseThrow();
     }
 
@@ -38,7 +38,7 @@ public class StudentService {
 
     @Transactional
     public void addStudent(StudentDto studentDto) {
-        Student student;
+        Template student;
         try {
             student = StudentMapper.fromDto(studentDto, null);
         } catch (IOException e) {
@@ -52,7 +52,7 @@ public class StudentService {
     public void updateStudent(StudentDto studentDto, Long id) {
         studentDao.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Student doesn't exist"));
-        Student student;
+        Template student;
         try {
             student = StudentMapper.fromDto(studentDto, id);
         } catch (IOException e) {
@@ -61,7 +61,7 @@ public class StudentService {
         studentDao.save(student);
     }
 
-    public List<Student> searchByMajorAndCourse(int majorId, int courseId) {
+    public List<Template> searchByMajorAndCourse(int majorId, int courseId) {
         return studentDao.findByMajorIdAndCourseId(majorId, courseId);
     }
 }
