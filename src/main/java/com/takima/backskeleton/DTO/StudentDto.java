@@ -1,7 +1,7 @@
 package com.takima.backskeleton.DTO;
 
-import com.takima.backskeleton.models.Course;
-import com.takima.backskeleton.models.Major;
+import com.takima.backskeleton.models.User;
+import com.takima.backskeleton.models.Portfolio;
 
 import java.time.Instant;
 import java.util.List;
@@ -9,8 +9,8 @@ public class StudentDto {
     private String firstName;
     private String lastName;
     private Instant birthdate;
-    private List<Course> courses;
-    private Major major;
+    private List<User> courses;
+    private Portfolio major;
 
     public String getFirstName() {
         return firstName;
@@ -24,11 +24,11 @@ public class StudentDto {
         return birthdate;
     }
 
-    public List<Course> getCourses() {
+    public List<User> getCourses() {
         return courses;
     }
 
-    public Major getMajor() {
+    public Portfolio getMajor() {
         return major;
     }
 
@@ -36,8 +36,8 @@ public class StudentDto {
         private String firstName;
         private String lastName;
         private Instant birthdate;
-        private List<Course> courses;
-        private Major major;
+        private List<User> courses;
+        private Portfolio major;
 
         public StudentDtoBuilder() {
         }
@@ -61,12 +61,12 @@ public class StudentDto {
             return this;
         }
 
-        public StudentDtoBuilder courses(List<Course> courses) {
+        public StudentDtoBuilder courses(List<User> courses) {
             this.courses = courses;
             return this;
         }
 
-        public StudentDtoBuilder major(Major major) {
+        public StudentDtoBuilder major(Portfolio major) {
             this.major = major;
             return this;
         }

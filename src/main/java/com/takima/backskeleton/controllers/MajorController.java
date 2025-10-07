@@ -1,7 +1,7 @@
 package com.takima.backskeleton.controllers;
 
-import com.takima.backskeleton.models.Major;
-import com.takima.backskeleton.models.Student;
+import com.takima.backskeleton.models.Portfolio;
+import com.takima.backskeleton.models.Template;
 import com.takima.backskeleton.services.MajorService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +22,12 @@ public class MajorController {
     }
 
     @GetMapping("")
-    public List<Major> findAll() {
+    public List<Portfolio> findAll() {
         return majorService.findAll();
     }
 
     @GetMapping("/{id}/students")
-    public List<Student> getStudentsOfMajor(@PathVariable Long id) {
+    public List<Template> getStudentsOfMajor(@PathVariable Long id) {
         return majorService.getStudentsOfMajor(id);
     }
 }

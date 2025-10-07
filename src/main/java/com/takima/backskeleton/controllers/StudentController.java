@@ -1,7 +1,7 @@
 package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.DTO.StudentDto;
-import com.takima.backskeleton.models.Student;
+import com.takima.backskeleton.models.Template;
 import com.takima.backskeleton.services.StudentService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +26,7 @@ public class StudentController {
     }
 
     @GetMapping("")
-    public List<Student> listStudents(@RequestParam(required = false) Integer majorId, @RequestParam(required = false) Integer courseId) {
+    public List<Template> listStudents(@RequestParam(required = false) Integer majorId, @RequestParam(required = false) Integer courseId) {
         if (majorId != null && courseId !=null) {
             return studentService.searchByMajorAndCourse(majorId, courseId);
         }
@@ -34,7 +34,7 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public Student getStudentById(@PathVariable Long id) {
+    public Template getStudentById(@PathVariable Long id) {
         return studentService.getById(id);
     }
 
