@@ -1,8 +1,6 @@
 package com.takima.backskeleton.controllers;
 
-import com.takima.backskeleton.DTO.StudentDto;
 import com.takima.backskeleton.models.Portfolio;
-import com.takima.backskeleton.models.Template;
 import com.takima.backskeleton.models.User;
 import com.takima.backskeleton.services.PortfolioService;
 import com.takima.backskeleton.services.UserService;
