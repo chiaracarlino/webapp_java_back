@@ -1,6 +1,6 @@
 package com.takima.backskeleton.services;
 
-import com.takima.backskeleton.DAO.StudentDao;
+import com.takima.backskeleton.DAO.PortfolioDao;
 import com.takima.backskeleton.DTO.StudentDto;
 import com.takima.backskeleton.DTO.StudentMapper;
 import com.takima.backskeleton.models.Template;
@@ -14,9 +14,9 @@ import java.util.NoSuchElementException;
 
 @Service
 public class StudentService {
-    private final StudentDao studentDao;
+    private final PortfolioDao studentDao;
 
-    public StudentService(StudentDao studentDao) {
+    public StudentService(PortfolioDao studentDao) {
         this.studentDao = studentDao;
     }
 

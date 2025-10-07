@@ -1,6 +1,6 @@
 package com.takima.backskeleton.services;
 
-import com.takima.backskeleton.DAO.CourseDao;
+import com.takima.backskeleton.DAO.UserDao;
 import com.takima.backskeleton.models.User;
 import org.springframework.stereotype.Component;
 
@@ -8,9 +8,9 @@ import java.util.List;
 
 @Component
 public class CourseService {
-    private final CourseDao courseDao;
+    private final UserDao courseDao;
 
-    public CourseService(CourseDao courseDao) {
+    public CourseService(UserDao courseDao) {
         this.courseDao = courseDao;
     }
 
