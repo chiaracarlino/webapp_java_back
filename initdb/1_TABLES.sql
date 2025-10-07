@@ -1,5 +1,5 @@
 -- Table des utilisateurs
-CREATE TABLE "user" (
+CREATE TABLE "users" (
     id_user SERIAL PRIMARY KEY,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
