@@ -4,6 +4,10 @@ import com.takima.backskeleton.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
-public interface CourseDao extends JpaRepository<User, Long> {
+public interface UserDao extends JpaRepository<User, Long> {
+    // Pour rechercher un utilisateur par email
+    Optional<User> findByEmail(String email);
 }

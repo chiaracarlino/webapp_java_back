@@ -1,6 +1,6 @@
 package com.takima.backskeleton.services;
 
-import com.takima.backskeleton.DAO.MajorDao;
+import com.takima.backskeleton.DAO.TemplateDao;
 import com.takima.backskeleton.models.Portfolio;
 import com.takima.backskeleton.models.Template;
 import org.springframework.stereotype.Component;
@@ -10,9 +10,9 @@ import java.util.List;
 
 @Component
 public class MajorService {
-    private final MajorDao majorDao;
+    private final TemplateDao majorDao;
 
-    public MajorService(MajorDao majorDao) {
+    public MajorService(TemplateDao majorDao) {
         this.majorDao = majorDao;
     }
 
