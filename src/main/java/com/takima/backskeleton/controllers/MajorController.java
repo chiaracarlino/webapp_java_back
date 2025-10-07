@@ -2,7 +2,7 @@ package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.models.Portfolio;
 import com.takima.backskeleton.models.Template;
-import com.takima.backskeleton.services.MajorService;
+import com.takima.backskeleton.services.TemplateService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +15,9 @@ import java.util.List;
 @RequestMapping("majors")
 @RestController
 public class MajorController {
-    private final MajorService majorService;
+    private final TemplateService majorService;
 
-    public MajorController(MajorService majorService) {
+    public MajorController(TemplateService majorService) {
         this.majorService = majorService;
     }
 

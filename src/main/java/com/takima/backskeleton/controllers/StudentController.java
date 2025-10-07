@@ -2,7 +2,7 @@ package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.DTO.StudentDto;
 import com.takima.backskeleton.models.Template;
-import com.takima.backskeleton.services.StudentService;
+import com.takima.backskeleton.services.PortfolioService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +19,9 @@ import java.util.List;
 @RequestMapping("students")
 @RestController
 public class StudentController {
-    private final StudentService studentService;
+    private final PortfolioService studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(PortfolioService studentService) {
         this.studentService = studentService;
     }
 
