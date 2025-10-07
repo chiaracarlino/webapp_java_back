@@ -1,7 +1,7 @@
 package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.models.User;
-import com.takima.backskeleton.services.CourseService;
+import com.takima.backskeleton.services.UserService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +13,9 @@ import java.util.List;
 @RequestMapping("courses")
 @RestController
 public class CourseController {
-    private final CourseService courseService;
+    private final UserService courseService;
 
-    public CourseController(CourseService courseService) {
+    public CourseController(UserService courseService) {
         this.courseService = courseService;
     }
 
