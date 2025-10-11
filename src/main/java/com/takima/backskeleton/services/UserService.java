@@ -28,6 +28,27 @@ public class UserService {
         return userDAO.findAll();
     }
 
+    public User patchUser(Long id, User partialUser) {
+        User existingUser = userDAO.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (partialUser.getFirstName() != null) {
+            existingUser.setFirstName(partialUser.getFirstName());
+        }
+        if (partialUser.getLastName() != null) {
+            existingUser.setLastName(partialUser.getLastName());
+        }
+        if (partialUser.getEmail() != null) {
+            existingUser.setEmail(partialUser.getEmail());
+        }
+        if (partialUser.getPassword() != null) {
+            existingUser.setPassword(partialUser.getPassword());
+        }
+
+        return userDAO.save(existingUser);
+    }
+
+
     public void deleteUser(Long id) {
         userDAO.deleteById(id);
     }
