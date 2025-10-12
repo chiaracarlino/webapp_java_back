@@ -2,11 +2,13 @@ package com.takima.backskeleton.services;
 
 import com.takima.backskeleton.DAO.PortfolioDao;
 import com.takima.backskeleton.models.Portfolio;
+import com.takima.backskeleton.models.Template;
 import com.takima.backskeleton.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PortfolioService {
@@ -18,8 +20,17 @@ public class PortfolioService {
         return portfolioDAO.save(portfolio);
     }
 
+    public Optional<Portfolio> getPortfolioById(Long id) {
+        return portfolioDAO.findById(id);
+    }
+
     public List<Portfolio> getPortfoliosByUser(User user) {
-        return portfolioDAO.findByUser(user);
+        // Si tu as une relation @ManyToOne User dans Portfolio,
+        // tu peux créer une méthode dans ton DAO : findByUser(User user)
+        return portfolioDAO.findAll()
+                .stream()
+                .filter(p -> p.getUser().equals(user))
+                .toList();
     }
 
     public void deletePortfolio(Long id) {
@@ -28,5 +39,26 @@ public class PortfolioService {
 
     public Portfolio updatePortfolio(Portfolio portfolio) {
         return portfolioDAO.save(portfolio);
+    }
+
+    public Portfolio patchPortfolio(Long id, Portfolio partialPortfolio) {
+        Portfolio existingPortfolio = portfolioDAO.findById(id)
+                .orElseThrow(() -> new RuntimeException("Portfolio not found"));
+
+        if (partialPortfolio.getNamePortfolio() != null) existingPortfolio.setNamePortfolio(partialPortfolio.getNamePortfolio());
+
+        if (partialPortfolio.getLink() != null) existingPortfolio.setLink(partialPortfolio.getLink());
+
+        if (partialPortfolio.getLinkedin() != null) existingPortfolio.setLinkedin(partialPortfolio.getLinkedin());
+
+        if (partialPortfolio.getCreationDate() != null) existingPortfolio.setCreationDate(partialPortfolio.getCreationDate());
+
+        if (partialPortfolio.getEditionDate() != null) existingPortfolio.setEditionDate(partialPortfolio.getEditionDate());
+
+        if (partialPortfolio.getUser() != null) existingPortfolio.setUser(partialPortfolio.getUser());
+
+        if (partialPortfolio.getTemplate() != null) existingPortfolio.setTemplate(partialPortfolio.getTemplate());
+
+        return portfolioDAO.save(existingPortfolio);
     }
 }

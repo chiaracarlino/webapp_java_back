@@ -1,6 +1,7 @@
 package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.models.Portfolio;
+import com.takima.backskeleton.models.Template;
 import com.takima.backskeleton.models.User;
 import com.takima.backskeleton.services.PortfolioService;
 import com.takima.backskeleton.services.UserService;
@@ -10,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
 @RestController
-@RequestMapping("/portfolios")
+@RequestMapping("/users/{userId}/portfolios")
+@CrossOrigin
 public class PortfolioController {
 
     @Autowired
@@ -21,37 +22,40 @@ public class PortfolioController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/{userId}")
+    @PostMapping
     public Portfolio createPortfolio(@PathVariable Long userId, @RequestBody Portfolio portfolio) {
-        Optional<User> userOpt = userService.getUserById(userId);
-        if (userOpt.isPresent()) {
-            portfolio.setUser(userOpt.get());
-            return portfolioService.createPortfolio(portfolio);
-        } else {
-            throw new RuntimeException("User not found");
-        }
+        User user = userService.getUserById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        portfolio.setUser(user);
+        return portfolioService.createPortfolio(portfolio);
     }
 
-    @GetMapping("/{id}")
-    public Optional<Portfolio> getPortfolio(@PathVariable Long id) {
-        return portfolioService.getPortfoliosByUser(null) // ici tu pourrais créer une méthode getById
-                .stream().filter(p -> p.getIdPortfolio().equals(id)).findFirst();
-    }
-
-    @GetMapping("/user/{userId}")
+    @GetMapping
     public List<Portfolio> getPortfoliosByUser(@PathVariable Long userId) {
-        Optional<User> userOpt = userService.getUserById(userId);
-        return userOpt.map(portfolioService::getPortfoliosByUser).orElse(null);
+        User user = userService.getUserById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return portfolioService.getPortfoliosByUser(user);
     }
 
-    @PutMapping("/{id}")
-    public Portfolio updatePortfolio(@PathVariable Long id, @RequestBody Portfolio portfolio) {
-        portfolio.setIdPortfolio(id);
+    @GetMapping("/{portfolioId}")
+    public Portfolio getPortfolio(@PathVariable Long userId, @PathVariable Long portfolioId) {
+        return portfolioService.getPortfolioById(portfolioId)
+                .orElseThrow(() -> new RuntimeException("Portfolio not found"));
+    }
+
+    @PutMapping("/{portfolioId}")
+    public Portfolio updatePortfolio(@PathVariable Long userId, @PathVariable Long portfolioId, @RequestBody Portfolio portfolio) {
+        portfolio.setIdPortfolio(portfolioId);
         return portfolioService.updatePortfolio(portfolio);
     }
 
-    @DeleteMapping("/{id}")
-    public void deletePortfolio(@PathVariable Long id) {
-        portfolioService.deletePortfolio(id);
+    @PatchMapping("/{portfolioId}")
+    public Portfolio patchPortfolio(@PathVariable Long userId, @PathVariable Long portfolioId, @RequestBody Portfolio partialPortfolio) {
+        return portfolioService.patchPortfolio(portfolioId, partialPortfolio);
+    }
+
+    @DeleteMapping("/{portfolioId}")
+    public void deletePortfolio(@PathVariable Long userId, @PathVariable Long portfolioId) {
+        portfolioService.deletePortfolio(portfolioId);
     }
 }
