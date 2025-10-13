@@ -38,4 +38,14 @@ public class TemplateService {
     public Template updateTemplate(Template template) {
         return templateDAO.save(template); // save met à jour si id existant
     }
+
+    public Template patchTemplate(Long id, Template partialTemplate) {
+        Template existingTemplate = templateDAO.findById(id)
+                .orElseThrow(() -> new RuntimeException("Template not found"));
+
+        if (partialTemplate.getNameTemplate() != null) existingTemplate.setNameTemplate(partialTemplate.getNameTemplate());
+
+        return templateDAO.save(existingTemplate);
+    }
+
 }

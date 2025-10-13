@@ -38,6 +38,12 @@ public class TemplateController {
         return templateService.updateTemplate(template);
     }
 
+    @PatchMapping("/{id}")
+    public Template patchTemplate(@PathVariable Long id, @RequestBody Template partialTemplate) {
+        return templateService.patchTemplate(id, partialTemplate);
+    }
+
+
     @DeleteMapping("/{id}")
     public void deleteTemplate(@PathVariable Long id) {
         templateService.deleteTemplate(id);
