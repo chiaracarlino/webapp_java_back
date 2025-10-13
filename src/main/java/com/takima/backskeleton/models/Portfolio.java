@@ -23,10 +23,10 @@ public class Portfolio {
     private String linkedin;
 
     @Column(nullable = false)
-    private LocalDate creationDate;
+    private LocalDate creationDate = LocalDate.now();
 
     @Column(nullable = false)
-    private LocalDate editionDate;
+    private LocalDate editionDate = LocalDate.now();
 
     // Relation avec User
     @ManyToOne
