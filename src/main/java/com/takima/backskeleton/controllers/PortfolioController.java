@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users/{userId}/portfolios")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 public class PortfolioController {
 
     @Autowired
@@ -61,10 +61,19 @@ public class PortfolioController {
     }
 
     @PutMapping("/{portfolioId}")
-    public Portfolio updatePortfolio(@PathVariable Long userId, @PathVariable Long portfolioId, @RequestBody Portfolio portfolio) {
-        portfolio.setIdPortfolio(portfolioId);
-        return portfolioService.updatePortfolio(portfolio);
+    public Portfolio updatePortfolio(@PathVariable Long userId, @PathVariable Long portfolioId, @RequestBody Portfolio partialPortfolio) {
+        Portfolio existing = portfolioService.getPortfolioById(portfolioId)
+                .orElseThrow(() -> new RuntimeException("Portfolio not found"));
+
+        if (partialPortfolio.getNamePortfolio() != null) existing.setNamePortfolio(partialPortfolio.getNamePortfolio());
+        if (partialPortfolio.getLink() != null) existing.setLink(partialPortfolio.getLink());
+        if (partialPortfolio.getLinkedin() != null) existing.setLinkedin(partialPortfolio.getLinkedin());
+        if (partialPortfolio.getTemplate() != null) existing.setTemplate(partialPortfolio.getTemplate());
+
+        return portfolioService.createPortfolio(existing); // save existant
     }
+
+
 
     @PatchMapping("/{portfolioId}")
     public Portfolio patchPortfolio(@PathVariable Long userId, @PathVariable Long portfolioId, @RequestBody Portfolio partialPortfolio) {
