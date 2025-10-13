@@ -56,9 +56,17 @@ public class PortfolioController {
 
     @GetMapping("/{portfolioId}")
     public Portfolio getPortfolio(@PathVariable Long userId, @PathVariable Long portfolioId) {
-        return portfolioService.getPortfolioById(portfolioId)
+        Portfolio portfolio = portfolioService.getPortfolioById(portfolioId)
                 .orElseThrow(() -> new RuntimeException("Portfolio not found"));
+
+        // ⚠️ Vérifie que ce portfolio appartient bien à l'utilisateur demandé
+        if (!portfolio.getUser().getIdUser().equals(userId)) {
+            throw new RuntimeException("This portfolio does not belong to this user");
+        }
+
+        return portfolio;
     }
+
 
     @PutMapping("/{portfolioId}")
     public Portfolio updatePortfolio(@PathVariable Long userId, @PathVariable Long portfolioId, @RequestBody Portfolio partialPortfolio) {

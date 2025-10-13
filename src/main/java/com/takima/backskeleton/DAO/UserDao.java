@@ -8,6 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface UserDao extends JpaRepository<User, Long> {
-    // Pour rechercher un utilisateur par email
+    // méthode personnalisée pour le login
     Optional<User> findByEmail(String email);
 }
+
+

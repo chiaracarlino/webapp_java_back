@@ -1,6 +1,7 @@
 package com.takima.backskeleton.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class User {
     private String password;
 
     // Relation avec Portfolio
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Portfolio> portfolios;
 
     // Getters et setters
@@ -39,6 +41,6 @@ public class User {
     public void setEmail(String email) { this.email = email; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
-    public List<Portfolio> getPortfolios() { return portfolios; }
-    public void setPortfolios(List<Portfolio> portfolios) { this.portfolios = portfolios; }
+    public List<Portfolio> getPortfolio() { return portfolios; }
+    public void setPortfolio(List<Portfolio> portfolios) { this.portfolios = portfolios; }
 }

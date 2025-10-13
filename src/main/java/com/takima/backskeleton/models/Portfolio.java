@@ -1,5 +1,6 @@
 package com.takima.backskeleton.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -31,11 +32,13 @@ public class Portfolio {
     // Relation avec User
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
+    @JsonBackReference
     private User user;
 
     // Relation avec Template
     @ManyToOne
     @JoinColumn(name = "id_template", nullable = false)
+    @JsonBackReference
     private Template template;
 
     // Getters et setters
