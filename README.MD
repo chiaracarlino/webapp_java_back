@@ -46,6 +46,7 @@ Portfolio table:
 | json_data      | text    |           |          |                                                 |
 
 
+
 ## API Endpoints
 
 Users
@@ -68,6 +69,7 @@ Portfolios
 | PUT    | `/portfolios/{id}` | Met à jour un portfolio               | `{ ... }`                                                                                |
 | PATCH  | `/portfolios/{id}` | Met à jour partiellement un portfolio | `{ ... }`                                                                                |
 | DELETE | `/portfolios/{id}` | Supprime un portfolio                 | -                                                                                        |
+
 
 
 ## Postman
@@ -109,3 +111,5 @@ Example of json for a portfolio:
 Passwords must be at least 6 characters long.
 When a user is deleted, all their associated portfolios are also deleted (CASCADE).
 The jsonData column in portfolio stores raw JSON for the frontend.
+
+Authentication: the SecurityConfig.java file in package com.takima.backskeleton; allows you to lift security to test routes with postman.
