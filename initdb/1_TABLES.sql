@@ -31,12 +31,6 @@ CREATE TABLE portfolio (
         ON DELETE CASCADE,
     CONSTRAINT fk_template_portfolio FOREIGN KEY (id_template)
         REFERENCES template(id_template),
-    CONSTRAINT unique_portfolio_per_user UNIQUE (id_user, name_portfolio)
-);
-
-create table student_course
-(
-    id SERIAL PRIMARY KEY,
-    student_id int not null,
-    course_id int not null
+    CONSTRAINT unique_portfolio_per_user UNIQUE (id_user, name_portfolio),
+    json_data TEXT
 );

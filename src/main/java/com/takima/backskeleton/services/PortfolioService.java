@@ -59,6 +59,8 @@ public class PortfolioService {
 
         if (partialPortfolio.getTemplate() != null) existingPortfolio.setTemplate(partialPortfolio.getTemplate());
 
+        if (partialPortfolio.getJsonData() != null) existingPortfolio.setJsonData(partialPortfolio.getJsonData());
+
         return portfolioDAO.save(existingPortfolio);
     }
 }

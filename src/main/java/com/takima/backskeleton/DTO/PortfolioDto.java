@@ -11,6 +11,7 @@ public class PortfolioDto {
     private LocalDate editionDate;
     private Long userId;
     private Long templateId;
+    private String jsonData;
 
     public PortfolioDto() {}
 
@@ -30,4 +31,7 @@ public class PortfolioDto {
     public void setUserId(Long userId) { this.userId = userId; }
     public Long getTemplateId() { return templateId; }
     public void setTemplateId(Long templateId) { this.templateId = templateId; }
+    public String getJsonData() { return jsonData; }
+    public void setJsonData(String jsonData) { this.jsonData = jsonData; }
+
 }
