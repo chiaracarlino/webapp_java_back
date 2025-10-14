@@ -15,7 +15,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users/{userId}/portfolios")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
+
 public class PortfolioController {
 
     @Autowired

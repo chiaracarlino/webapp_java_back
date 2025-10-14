@@ -17,7 +17,7 @@ public class Template {
     private String nameTemplate;
 
     @OneToMany(mappedBy = "template", cascade = CascadeType.ALL)
-    @JsonManagedReference
+
     private List<Portfolio> portfolios;
 
     // Getters et setters

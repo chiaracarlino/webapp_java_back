@@ -38,7 +38,7 @@ public class Portfolio {
     // Relation avec Template
     @ManyToOne
     @JoinColumn(name = "id_template", nullable = false)
-    @JsonBackReference
+
     private Template template;
 
     // Getters et setters
