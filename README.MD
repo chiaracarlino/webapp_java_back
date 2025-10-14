@@ -74,29 +74,31 @@ Portfolios
 
 Example of json for a user:
 {
-    "idUser": 5,
-    "firstName": "David",
-    "lastName": "Martin",
-    "email": "david.martin@test.com",
-    "password": "azerty123",
-    "portfolios": null,
-    "portfolio": null
+  "idUser": 5,
+  "firstName": "David",
+  "lastName": "Martin",
+  "email": "david.martin@test.com",
+  "password": "azerty123",
+  "portfolios": null,
+  "portfolio": null
 }
+
 
 Example of json for a portfolio:
 {
-    "idPortfolio": 13,
-    "namePortfolio": "Portfolio de david3",
-    "link": "https://david3-portfolio.com",
-    "linkedin": "https://www.linkedin.com/in/david",
-    "creationDate": "2025-10-14",
-    "editionDate": "2025-10-14",
-    "template": {
-        "idTemplate": 1,
-        "nameTemplate": "template de base"
-    },
-    "jsonData": null
+  "idPortfolio": 13,
+  "namePortfolio": "Portfolio de david3",
+  "link": "https://david3-portfolio.com",
+  "linkedin": "https://www.linkedin.com/in/david",
+  "creationDate": "2025-10-14",
+  "editionDate": "2025-10-14",
+  "template": {
+    "idTemplate": 1,
+    "nameTemplate": "template de base"
+  },
+  "jsonData": null
 }
+
 
 
 ##Important Notes
