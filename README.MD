@@ -73,7 +73,7 @@ Portfolios
 ## Postman
 
 Example of json for a user:
-{
+```{
   "idUser": 5,
   "firstName": "David",
   "lastName": "Martin",
@@ -85,7 +85,7 @@ Example of json for a user:
 
 
 Example of json for a portfolio:
-{
+```{
   "idPortfolio": 13,
   "namePortfolio": "Portfolio de david3",
   "link": "https://david3-portfolio.com",
