@@ -1,5 +1,6 @@
 package com.takima.backskeleton.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -17,7 +18,7 @@ public class Template {
     private String nameTemplate;
 
     @OneToMany(mappedBy = "template", cascade = CascadeType.ALL)
-
+    @JsonIgnore
     private List<Portfolio> portfolios;
 
     // Getters et setters
