@@ -38,8 +38,11 @@ public class Portfolio {
     // Relation avec Template
     @ManyToOne
     @JoinColumn(name = "id_template", nullable = false)
-    @JsonBackReference
     private Template template;
+
+    //json
+    @Column(columnDefinition = "TEXT")
+    private String jsonData;
 
     // Getters et setters
     public Long getIdPortfolio() { return idPortfolio; }
@@ -58,4 +61,6 @@ public class Portfolio {
     public void setUser(User user) { this.user = user; }
     public Template getTemplate() { return template; }
     public void setTemplate(Template template) { this.template = template; }
+    public String getJsonData() { return jsonData; }
+    public void setJsonData(String jsonData) { this.jsonData = jsonData; }
 }

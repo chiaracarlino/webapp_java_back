@@ -15,7 +15,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users/{userId}/portfolios")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
+
 public class PortfolioController {
 
     @Autowired
@@ -41,6 +42,7 @@ public class PortfolioController {
         portfolio.setLinkedin(dto.getLinkedin());
         portfolio.setUser(user);
         portfolio.setTemplate(template);
+        portfolio.setJsonData(dto.getJsonData());
 
         return portfolioService.createPortfolio(portfolio);
     }

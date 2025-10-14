@@ -17,6 +17,7 @@ public class PortfolioMapper {
         dto.setEditionDate(portfolio.getEditionDate());
         dto.setUserId(portfolio.getUser() != null ? portfolio.getUser().getIdUser() : null);
         dto.setTemplateId(portfolio.getTemplate() != null ? portfolio.getTemplate().getIdTemplate() : null);
+        dto.setJsonData(portfolio.getJsonData());
         return dto;
     }
 
@@ -31,6 +32,7 @@ public class PortfolioMapper {
         portfolio.setEditionDate(dto.getEditionDate());
         portfolio.setUser(user);
         portfolio.setTemplate(template);
+        portfolio.setJsonData(dto.getJsonData());
         return portfolio;
     }
 }
