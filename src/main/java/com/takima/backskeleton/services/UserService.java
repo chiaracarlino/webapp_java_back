@@ -56,4 +56,8 @@ public class UserService {
     public User updateUser(User user) {
         return userDAO.save(user); // save fait update si id existant
     }
+
+    public User getUserByEmail(String email) {
+        return userDAO.findByEmail(email).orElse(null);
+    }
 }

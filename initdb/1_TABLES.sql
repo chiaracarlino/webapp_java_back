@@ -27,7 +27,7 @@ CREATE TABLE portfolio (
 
     CONSTRAINT chk_dates CHECK (edition_date >= creation_date),
     CONSTRAINT fk_user_portfolio FOREIGN KEY (id_user)
-        REFERENCES "user"(id_user)
+        REFERENCES "users"(id_user)
         ON DELETE CASCADE,
     CONSTRAINT fk_template_portfolio FOREIGN KEY (id_template)
         REFERENCES template(id_template),
