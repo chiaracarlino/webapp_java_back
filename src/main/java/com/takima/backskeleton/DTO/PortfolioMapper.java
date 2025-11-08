@@ -2,7 +2,6 @@ package com.takima.backskeleton.DTO;
 
 import com.takima.backskeleton.models.Portfolio;
 import com.takima.backskeleton.models.User;
-import com.takima.backskeleton.models.Template;
 
 public class PortfolioMapper {
 
@@ -16,12 +15,12 @@ public class PortfolioMapper {
         dto.setCreationDate(portfolio.getCreationDate());
         dto.setEditionDate(portfolio.getEditionDate());
         dto.setUserId(portfolio.getUser() != null ? portfolio.getUser().getIdUser() : null);
-        dto.setTemplateId(portfolio.getTemplate() != null ? portfolio.getTemplate().getIdTemplate() : null);
+        dto.setTemplateName(portfolio.getTemplateName());
         dto.setJsonData(portfolio.getJsonData());
         return dto;
     }
 
-    public static Portfolio toEntity(PortfolioDto dto, User user, Template template) {
+    public static Portfolio toEntity(PortfolioDto dto, User user) {
         if (dto == null) return null;
         Portfolio portfolio = new Portfolio();
         portfolio.setIdPortfolio(dto.getId());
@@ -31,7 +30,7 @@ public class PortfolioMapper {
         portfolio.setCreationDate(dto.getCreationDate());
         portfolio.setEditionDate(dto.getEditionDate());
         portfolio.setUser(user);
-        portfolio.setTemplate(template);
+        portfolio.setTemplateName(dto.getTemplateName());
         portfolio.setJsonData(dto.getJsonData());
         return portfolio;
     }

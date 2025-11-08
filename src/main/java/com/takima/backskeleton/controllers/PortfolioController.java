@@ -2,21 +2,17 @@ package com.takima.backskeleton.controllers;
 
 import com.takima.backskeleton.DTO.PortfolioDto;
 import com.takima.backskeleton.models.Portfolio;
-import com.takima.backskeleton.models.Template;
 import com.takima.backskeleton.models.User;
 import com.takima.backskeleton.services.PortfolioService;
-import com.takima.backskeleton.services.TemplateService;
 import com.takima.backskeleton.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users/{userId}/portfolios")
 @CrossOrigin(origins = "*")
-
 public class PortfolioController {
 
     @Autowired
@@ -25,35 +21,49 @@ public class PortfolioController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private TemplateService templateService;
-
     @PostMapping
     public Portfolio createPortfolio(@PathVariable Long userId, @RequestBody PortfolioDto dto) {
-        User user = userService.getUserById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        System.out.println("🔵 Create portfolio endpoint appelé");
+        System.out.println("👤 User ID: " + userId);
+        System.out.println("📝 Portfolio name: " + dto.getName());
+        System.out.println("🎨 Template name: " + dto.getTemplateName());
+        
+        try {
+            User user = userService.getUserById(userId)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+            
+            System.out.println("✅ User trouvé: " + user.getEmail());
 
-        Template template = templateService.getTemplateById(dto.getTemplateId())
-                .orElseThrow(() -> new RuntimeException("Template not found"));
+            Portfolio portfolio = new Portfolio();
+            portfolio.setNamePortfolio(dto.getName());
+            portfolio.setTemplateName(dto.getTemplateName());  // ✅ Stocker le nom du template
+            portfolio.setLink(dto.getLink());
+            portfolio.setLinkedin(dto.getLinkedin());
+            portfolio.setUser(user);
+            portfolio.setJsonData(dto.getJsonData());
 
-        Portfolio portfolio = new Portfolio();
-        portfolio.setNamePortfolio(dto.getName());
-        portfolio.setLink(dto.getLink());
-        portfolio.setLinkedin(dto.getLinkedin());
-        portfolio.setUser(user);
-        portfolio.setTemplate(template);
-        portfolio.setJsonData(dto.getJsonData());
-
-        return portfolioService.createPortfolio(portfolio);
+            Portfolio saved = portfolioService.createPortfolio(portfolio);
+            System.out.println("✅ Portfolio créé avec ID: " + saved.getIdPortfolio());
+            
+            return saved;
+        } catch (Exception e) {
+            System.out.println("❌ Erreur: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
-
-
 
     @GetMapping
     public List<Portfolio> getPortfoliosByUser(@PathVariable Long userId) {
+        System.out.println("🔵 Get portfolios pour user: " + userId);
+        
         User user = userService.getUserById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        return portfolioService.getPortfoliosByUser(user);
+        
+        List<Portfolio> portfolios = portfolioService.getPortfoliosByUser(user);
+        System.out.println("📦 Nombre de portfolios trouvés: " + portfolios.size());
+        
+        return portfolios;
     }
 
     @GetMapping("/{portfolioId}")
@@ -61,7 +71,6 @@ public class PortfolioController {
         Portfolio portfolio = portfolioService.getPortfolioById(portfolioId)
                 .orElseThrow(() -> new RuntimeException("Portfolio not found"));
 
-        // ⚠️ Vérifie que ce portfolio appartient bien à l'utilisateur demandé
         if (!portfolio.getUser().getIdUser().equals(userId)) {
             throw new RuntimeException("This portfolio does not belong to this user");
         }
@@ -69,21 +78,26 @@ public class PortfolioController {
         return portfolio;
     }
 
-
     @PutMapping("/{portfolioId}")
     public Portfolio updatePortfolio(@PathVariable Long userId, @PathVariable Long portfolioId, @RequestBody Portfolio partialPortfolio) {
         Portfolio existing = portfolioService.getPortfolioById(portfolioId)
                 .orElseThrow(() -> new RuntimeException("Portfolio not found"));
 
-        if (partialPortfolio.getNamePortfolio() != null) existing.setNamePortfolio(partialPortfolio.getNamePortfolio());
-        if (partialPortfolio.getLink() != null) existing.setLink(partialPortfolio.getLink());
-        if (partialPortfolio.getLinkedin() != null) existing.setLinkedin(partialPortfolio.getLinkedin());
-        if (partialPortfolio.getTemplate() != null) existing.setTemplate(partialPortfolio.getTemplate());
+        if (partialPortfolio.getNamePortfolio() != null) {
+            existing.setNamePortfolio(partialPortfolio.getNamePortfolio());
+        }
+        if (partialPortfolio.getLink() != null) {
+            existing.setLink(partialPortfolio.getLink());
+        }
+        if (partialPortfolio.getLinkedin() != null) {
+            existing.setLinkedin(partialPortfolio.getLinkedin());
+        }
+        if (partialPortfolio.getTemplateName() != null) {
+            existing.setTemplateName(partialPortfolio.getTemplateName());
+        }
 
-        return portfolioService.createPortfolio(existing); // save existant
+        return portfolioService.createPortfolio(existing);
     }
-
-
 
     @PatchMapping("/{portfolioId}")
     public Portfolio patchPortfolio(@PathVariable Long userId, @PathVariable Long portfolioId, @RequestBody Portfolio partialPortfolio) {
@@ -92,6 +106,7 @@ public class PortfolioController {
 
     @DeleteMapping("/{portfolioId}")
     public void deletePortfolio(@PathVariable Long userId, @PathVariable Long portfolioId) {
+        System.out.println("🗑️ Suppression portfolio: " + portfolioId);
         portfolioService.deletePortfolio(portfolioId);
     }
 }
