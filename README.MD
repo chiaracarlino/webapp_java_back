@@ -1,6 +1,6 @@
 # Your backend API
 
-## Technologies utilisées
+## Technologies used
 
 Java 21
 Spring Boot 3.2
@@ -10,14 +10,29 @@ Docker & Docker Compose
 
 
 ## Set up 
-1. Copie-colle le `.env.sample` en `.env`
-2. Remplis le fichier `.env` avec les credentials de ton choix
-3. Fait un `docker compose up`
-4. Rajoute le plugin : [env-file](https://plugins.jetbrains.com/plugin/7861-envfile)
-5. Ajoute ton fichier `.env` comme ci-dessous (n'oublie pas d'activer les fichiers cachés)
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/chiaracarlino/webapp_java_back.git
+   cd webapp_java_back
+    ```
+2. Copy the environment sample file and configure your credentials: `cp .env.sample .env`
+3. Fill in your .env file with your PostgreSQL credentials.
+4. Start the project using Docker: `docker compose up`
+5. Install the plugin : [env-file](https://plugins.jetbrains.com/plugin/7861-envfile)
+6. Add your file `.env` like (Don't forget to enable hidden files)
 <img src="img-readme/img.png">
 <img src="img-readme/img_1.png">
 <img src="img-readme/img_2.png">
+
+
+## Start the backend manually
+
+`mvn clean spring-boot:run`
+
+## Access the database
+
+`docker exec -it db-portfolio psql -U root db-portfolio`
 
 
 ## Data Base
@@ -30,7 +45,6 @@ User table:
 | last_name  | text    |           | not null |                                       |
 | email      | text    |           | not null |                                       |
 | password   | text    |           | not null |                                       |
-
 
 Portfolio table:
 | Column         | Type    | Collation | Nullable | Default                                         |
@@ -46,7 +60,6 @@ Portfolio table:
 | json_data      | text    |           |          |                                                 |
 
 
-
 ## API Endpoints
 
 Users
@@ -59,7 +72,6 @@ Users
 | PATCH  | `/users/{id}` | Met à jour partiellement un utilisateur | `{ ... }`                                                                      |
 | DELETE | `/users/{id}` | Supprime un utilisateur                 | -                                                                              |
 
-
 Portfolios
 | Method | Endpoint           | Description                           | Body (JSON)                                                                              |
 | ------ | ------------------ | ------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -69,7 +81,6 @@ Portfolios
 | PUT    | `/portfolios/{id}` | Met à jour un portfolio               | `{ ... }`                                                                                |
 | PATCH  | `/portfolios/{id}` | Met à jour partiellement un portfolio | `{ ... }`                                                                                |
 | DELETE | `/portfolios/{id}` | Supprime un portfolio                 | -                                                                                        |
-
 
 
 ## Postman
@@ -101,7 +112,6 @@ Example of json for a portfolio:
 ```
 
 
-
 ##Important Notes
 
 Passwords must be at least 6 characters long.
@@ -109,7 +119,4 @@ When a user is deleted, all their associated portfolios are also deleted (CASCAD
 The jsonData column in portfolio stores raw JSON for the frontend.
 Authentication: the SecurityConfig.java file in package com.takima.backskeleton; allows you to lift security to test routes with postman. I tried using BCrypt to encrypt passwords, but I removed it because it's a local application.
 We have a “Publish” button on our website that’s meant to make a portfolio public. However, since we’re currently working in a local environment, we decided to disable this feature.
-A unique link is generated for each portfolio, but we’re not using it for now because we don’t actually deploy any websites yet
-
-To start the backend: `mvn clean spring-boot:run`
-To access the database in the terminal: `docker exec -it db-portfolio psql -U root db-portfolio`
+A unique link is generated for each portfolio, but we’re not using it for now because we don’t actually deploy any websites yet.
