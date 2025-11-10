@@ -113,3 +113,9 @@ When a user is deleted, all their associated portfolios are also deleted (CASCAD
 The jsonData column in portfolio stores raw JSON for the frontend.
 
 Authentication: the SecurityConfig.java file in package com.takima.backskeleton; allows you to lift security to test routes with postman.
+I tried using BCrypt to encrypt passwords, but I removed it because it's a local application.
+
+
+To start the backend: `mvn clean spring-boot:run`
+
+To access the database in the terminal: `docker exec -it db-portfolio psql -U root db-portfolio`
