@@ -114,9 +114,10 @@ Example of json for a portfolio:
 
 ##Important Notes
 
-Passwords must be at least 6 characters long.
-When a user is deleted, all their associated portfolios are also deleted (CASCADE).
-The jsonData column in portfolio stores raw JSON for the frontend.
-Authentication: the SecurityConfig.java file in package com.takima.backskeleton; allows you to lift security to test routes with postman. I tried using BCrypt to encrypt passwords, but I removed it because it's a local application.
-We have a “Publish” button on our website that’s meant to make a portfolio public. However, since we’re currently working in a local environment, we decided to disable this feature.
-A unique link is generated for each portfolio, but we’re not using it for now because we don’t actually deploy any websites yet.
+- Passwords must be **at least 6 characters** long.
+- Deleting a user also deletes all associated portfolios (**CASCADE**).
+- The `jsonData` field in `portfolio` stores raw JSON for frontend rendering.
+- Authentication can be disabled for testing purposes in `SecurityConfig.java`.
+- Password encryption using BCrypt was tested but removed since this is a **local-only project**.
+- Each portfolio automatically gets a unique link, but publishing is **disabled** because deployment is not implemented yet.
+
