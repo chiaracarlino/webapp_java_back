@@ -121,3 +121,6 @@ Example of json for a portfolio:
 - Password encryption using BCrypt was tested but removed since this is a **local-only project**.
 - Each portfolio automatically gets a unique link, but publishing is **disabled** because deployment is not implemented yet.
 
+
+## Authors
+Developed by Chiara CARLINO and Lucille FINET.
