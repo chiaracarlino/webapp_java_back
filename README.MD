@@ -112,7 +112,7 @@ Example of json for a portfolio:
 ```
 
 
-##Important Notes
+## Important Notes
 
 - Passwords must be **at least 6 characters** long.
 - Deleting a user also deletes all associated portfolios (**CASCADE**).
