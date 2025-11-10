@@ -25,10 +25,10 @@ public class SecurityConfig {
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().permitAll()  // ✅ Tout est accessible pour le moment
+                .anyRequest().permitAll()
             )
-            .httpBasic(httpBasic -> httpBasic.disable())  // ✅ Désactive l'authentification basique
-            .formLogin(form -> form.disable());  // ✅ Désactive le formulaire de login
+            .httpBasic(httpBasic -> httpBasic.disable()) 
+            .formLogin(form -> form.disable());
 
         return http.build();
     }

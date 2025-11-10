@@ -14,8 +14,6 @@ public class UserService {
     @Autowired
     private UserDao userDAO;
 
-    // CRUD simple
-
     public User createUser(User user) {
         return userDAO.save(user);
     }

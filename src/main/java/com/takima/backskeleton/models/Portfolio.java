@@ -32,17 +32,14 @@ public class Portfolio {
     @Column(nullable = false)
     private LocalDate editionDate = LocalDate.now();
 
-    // Relation avec User
     @ManyToOne
     @JoinColumn(name = "id_user", nullable = false)
     @JsonBackReference
     private User user;
 
-    //json
     @Column(columnDefinition = "TEXT")
     private String jsonData;
 
-    // Getters et setters
     public Long getIdPortfolio() { return idPortfolio; }
     public void setIdPortfolio(Long idPortfolio) { this.idPortfolio = idPortfolio; }
     public String getNamePortfolio() { return namePortfolio; }

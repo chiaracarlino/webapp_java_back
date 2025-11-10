@@ -12,20 +12,4 @@ public class BackSkeletonApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackSkeletonApplication.class, args);
 	}
-/*
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**")
-						// ✅ utiliser allowedOriginPatterns au lieu de allowedOrigins
-						.allowedOriginPatterns("http://localhost:4200", "http://localhost:8080") 
-						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-						.allowedHeaders("*")
-						.allowCredentials(true);
-			}
-		};
-	}
-	*/
 }

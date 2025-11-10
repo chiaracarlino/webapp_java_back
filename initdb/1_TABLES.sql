@@ -7,13 +7,7 @@ CREATE TABLE "users" (
     password TEXT NOT NULL,
     CONSTRAINT chk_password_length CHECK (length(password) >= 6)
 );
-/*
--- Table des templates
-CREATE TABLE template (
-    id_template SERIAL PRIMARY KEY,
-    name_template TEXT NOT NULL
-);
-*/
+
 -- Table des portfolios
 CREATE TABLE portfolio (
     id_portfolio SERIAL PRIMARY KEY,

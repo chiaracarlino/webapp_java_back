@@ -25,12 +25,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    // Relation avec Portfolio
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Portfolio> portfolios;
 
-    // Getters et setters
     public Long getIdUser() { return idUser; }
     public void setIdUser(Long idUser) { this.idUser = idUser; }
     public String getFirstName() { return firstName; }

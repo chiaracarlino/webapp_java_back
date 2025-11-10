@@ -18,12 +18,11 @@ public class UserResponse {
     // Constructeur à partir d'un User
     public UserResponse(Long id, String firstName, String lastName, String email) {
         this.id = id;
-        this.prenom = firstName;  // firstName → prenom
-        this.nom = lastName;      // lastName → nom
+        this.prenom = firstName;
+        this.nom = lastName;
         this.email = email;
     }
 
-    // Getters et Setters
     public Long getId() {
         return id;
     }
