@@ -7,10 +7,10 @@ public class PortfolioDto {
     private String name;
     private String link;
     private String linkedin;
+    private String templateName;
     private LocalDate creationDate;
     private LocalDate editionDate;
     private Long userId;
-    private Long templateId;
     private String jsonData;
 
     public PortfolioDto() {}
@@ -23,14 +23,14 @@ public class PortfolioDto {
     public void setLink(String link) { this.link = link; }
     public String getLinkedin() { return linkedin; }
     public void setLinkedin(String linkedin) { this.linkedin = linkedin; }
+    public String getTemplateName() { return templateName; }
+    public void setTemplateName(String templateName) { this.templateName = templateName; }
     public LocalDate getCreationDate() { return creationDate; }
     public void setCreationDate(LocalDate creationDate) { this.creationDate = creationDate; }
     public LocalDate getEditionDate() { return editionDate; }
     public void setEditionDate(LocalDate editionDate) { this.editionDate = editionDate; }
     public Long getUserId() { return userId; }
     public void setUserId(Long userId) { this.userId = userId; }
-    public Long getTemplateId() { return templateId; }
-    public void setTemplateId(Long templateId) { this.templateId = templateId; }
     public String getJsonData() { return jsonData; }
     public void setJsonData(String jsonData) { this.jsonData = jsonData; }
 

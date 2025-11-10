@@ -2,7 +2,6 @@ package com.takima.backskeleton.services;
 
 import com.takima.backskeleton.DAO.PortfolioDao;
 import com.takima.backskeleton.models.Portfolio;
-import com.takima.backskeleton.models.Template;
 import com.takima.backskeleton.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,7 +56,7 @@ public class PortfolioService {
 
         if (partialPortfolio.getUser() != null) existingPortfolio.setUser(partialPortfolio.getUser());
 
-        if (partialPortfolio.getTemplate() != null) existingPortfolio.setTemplate(partialPortfolio.getTemplate());
+        if (partialPortfolio.getTemplateName() != null) existingPortfolio.setTemplateName(partialPortfolio.getTemplateName());
 
         if (partialPortfolio.getJsonData() != null) existingPortfolio.setJsonData(partialPortfolio.getJsonData());
 

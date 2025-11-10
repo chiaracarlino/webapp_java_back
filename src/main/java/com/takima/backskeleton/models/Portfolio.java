@@ -24,6 +24,9 @@ public class Portfolio {
     private String linkedin;
 
     @Column(nullable = false)
+    private String templateName;
+
+    @Column(nullable = false)
     private LocalDate creationDate = LocalDate.now();
 
     @Column(nullable = false)
@@ -34,11 +37,6 @@ public class Portfolio {
     @JoinColumn(name = "id_user", nullable = false)
     @JsonBackReference
     private User user;
-
-    // Relation avec Template
-    @ManyToOne
-    @JoinColumn(name = "id_template", nullable = false)
-    private Template template;
 
     //json
     @Column(columnDefinition = "TEXT")
@@ -53,14 +51,25 @@ public class Portfolio {
     public void setLink(String link) { this.link = link; }
     public String getLinkedin() { return linkedin; }
     public void setLinkedin(String linkedin) { this.linkedin = linkedin; }
+    public String getTemplateName() { return templateName; }
+    public void setTemplateName(String templateName) { this.templateName = templateName; }
     public LocalDate getCreationDate() { return creationDate; }
     public void setCreationDate(LocalDate creationDate) { this.creationDate = creationDate; }
     public LocalDate getEditionDate() { return editionDate; }
     public void setEditionDate(LocalDate editionDate) { this.editionDate = editionDate; }
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
-    public Template getTemplate() { return template; }
-    public void setTemplate(Template template) { this.template = template; }
     public String getJsonData() { return jsonData; }
     public void setJsonData(String jsonData) { this.jsonData = jsonData; }
+
+    @PrePersist
+    protected void onCreate() {
+        creationDate = LocalDate.now();
+        editionDate = LocalDate.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        editionDate = LocalDate.now();
+    }
 }

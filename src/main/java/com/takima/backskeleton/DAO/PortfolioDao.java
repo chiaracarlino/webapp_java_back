@@ -1,7 +1,7 @@
 package com.takima.backskeleton.DAO;
 
 import com.takima.backskeleton.models.Portfolio;
-import com.takima.backskeleton.models.Template;
+
 import com.takima.backskeleton.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
