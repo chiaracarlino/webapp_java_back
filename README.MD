@@ -77,30 +77,26 @@ Portfolios
 Example of json for a user:
 ```
 {
-  "idUser": 5,
-  "firstName": "David",
-  "lastName": "Martin",
-  "email": "david.martin@test.com",
-  "password": "azerty123",
-  "portfolios": null,
-  "portfolio": null
+    "idUser": 5,
+    "firstName": "lulu",
+    "lastName": "test",
+    "email": "lulu.test@test.com",
+    "password": "azerty123",
+    "portfolios": []
 }
 ```
 
 Example of json for a portfolio:
 ```
 {
-  "idPortfolio": 13,
-  "namePortfolio": "Portfolio de david3",
-  "link": "https://david3-portfolio.com",
-  "linkedin": "https://www.linkedin.com/in/david",
-  "creationDate": "2025-10-14",
-  "editionDate": "2025-10-14",
-  "template": {
-    "idTemplate": 1,
-    "nameTemplate": "template de base"
-  },
-  "jsonData": null
+    "idPortfolio": 6,
+    "namePortfolio": "Portfolio italie",
+    "link": "https://portfolio-5-portfolio-italie-1762715488455-f5xst4.com",
+    "linkedin": "https://linkedin.com/in/mon-profil",
+    "templateName": "classic",
+    "creationDate": "2025-11-09",
+    "editionDate": "2025-11-09",
+    "jsonData": "{\"accueil\":{\"firstName\":\"lucille\",\"lastName\":\"finet\",\"objective\":\"stage\",\"bio\":\"je suis en majeur numérique\",\"locations\":\"italie\"},\"formation\":[{\"startDate\":\"2025-04-12\",\"endDate\":\"2026-06-28\",\"current\":true,\"degree\":\"ingenieur epf\",\"description\":\"numérique\"}],\"experience\":[{\"startDate\":\"2024-08-09\",\"endDate\":\"2024-12-29\",\"current\":false,\"jobTitle\":\"stage\",\"company\":\"esrf\",\"description\":\"\"}],\"competences\":{\"softSkills\":\"\",\"hardSkills\":\"\",\"languages\":\"\",\"certificates\":[],\"customCategories\":[]},\"contact\":{\"email\":\"\",\"phone\":\"\",\"address\":\"\",\"linkedin\":\"\",\"github\":\"\",\"twitter\":\"\"}}"
 }
 ```
 
