@@ -35,13 +35,11 @@ public class UserDto {
 
     @JsonProperty("prenom")
     public void setPrenom(String prenom) {
-        System.out.println("🔵 setPrenom appelé avec: " + prenom);
         this.firstName = prenom;
     }
 
     @JsonProperty("nom")
     public void setNom(String nom) {
-        System.out.println("🔵 setNom appelé avec: " + nom);
         this.lastName = nom;
     }
 

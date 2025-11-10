@@ -23,31 +23,28 @@ public class PortfolioController {
 
     @PostMapping
     public Portfolio createPortfolio(@PathVariable Long userId, @RequestBody PortfolioDto dto) {
-        System.out.println("🔵 Create portfolio endpoint appelé");
-        System.out.println("👤 User ID: " + userId);
-        System.out.println("📝 Portfolio name: " + dto.getName());
-        System.out.println("🎨 Template name: " + dto.getTemplateName());
+        System.out.println(" Create portfolio endpoint appelé");
         
         try {
             User user = userService.getUserById(userId)
                     .orElseThrow(() -> new RuntimeException("User not found"));
             
-            System.out.println("✅ User trouvé: " + user.getEmail());
+            System.out.println(" User trouvé: " + user.getEmail());
 
             Portfolio portfolio = new Portfolio();
             portfolio.setNamePortfolio(dto.getName());
-            portfolio.setTemplateName(dto.getTemplateName());  // ✅ Stocker le nom du template
+            portfolio.setTemplateName(dto.getTemplateName());
             portfolio.setLink(dto.getLink());
             portfolio.setLinkedin(dto.getLinkedin());
             portfolio.setUser(user);
             portfolio.setJsonData(dto.getJsonData());
 
             Portfolio saved = portfolioService.createPortfolio(portfolio);
-            System.out.println("✅ Portfolio créé avec ID: " + saved.getIdPortfolio());
+            System.out.println(" Portfolio créé avec ID: " + saved.getIdPortfolio());
             
             return saved;
         } catch (Exception e) {
-            System.out.println("❌ Erreur: " + e.getMessage());
+            System.out.println(" Erreur: " + e.getMessage());
             e.printStackTrace();
             throw e;
         }
@@ -55,13 +52,11 @@ public class PortfolioController {
 
     @GetMapping
     public List<Portfolio> getPortfoliosByUser(@PathVariable Long userId) {
-        System.out.println("🔵 Get portfolios pour user: " + userId);
-        
+       
         User user = userService.getUserById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         
         List<Portfolio> portfolios = portfolioService.getPortfoliosByUser(user);
-        System.out.println("📦 Nombre de portfolios trouvés: " + portfolios.size());
         
         return portfolios;
     }

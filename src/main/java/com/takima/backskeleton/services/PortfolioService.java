@@ -24,8 +24,6 @@ public class PortfolioService {
     }
 
     public List<Portfolio> getPortfoliosByUser(User user) {
-        // Si tu as une relation @ManyToOne User dans Portfolio,
-        // tu peux créer une méthode dans ton DAO : findByUser(User user)
         return portfolioDAO.findAll()
                 .stream()
                 .filter(p -> p.getUser().equals(user))

@@ -31,16 +31,13 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody UserDto request) {
-        System.out.println("🔵 Login endpoint appelé");
-        System.out.println("📧 Email reçu: " + (request != null ? request.getEmail() : "NULL"));
-        System.out.println("🔐 Password présent: " + (request != null && request.getPassword() != null));
-        
+        System.out.println(" Login endpoint appelé");
+
         try {
             LoginResponse response = authService.login(request);
-            System.out.println("✅ Login réussi pour: " + request.getEmail());
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            System.out.println("❌ Erreur login: " + e.getMessage());
+            System.out.println(" Erreur login: " + e.getMessage());
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
@@ -48,22 +45,17 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<LoginResponse> register(@RequestBody UserDto request) {
-        System.out.println("🔵 Register endpoint appelé");
-        System.out.println("=== REGISTER START ===");
-        System.out.println("FirstName: " + request.getFirstName());
-        System.out.println("LastName: " + request.getLastName());
-        System.out.println("Email: " + request.getEmail());
-        System.out.println("Password présent: " + (request.getPassword() != null));
-        
+        System.out.println(" Register endpoint appelé");
+         
         //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         //String hashedPassword = encoder.encode(request.getPassword());
-        //
+        
         try {
             LoginResponse response = authService.register(request);
-            System.out.println("✅ Register réussi");
+            System.out.println(" Register réussi");
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            System.out.println("❌ Erreur register: " + e.getMessage());
+            System.out.println(" Erreur register: " + e.getMessage());
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
@@ -71,7 +63,7 @@ public class AuthController {
 
     @GetMapping("/test")
     public String test() {
-        System.out.println("🔵 Test endpoint appelé");
+        System.out.println("Test endpoint appelé");
         return "Backend fonctionne !";
     }
 
@@ -90,56 +82,3 @@ public class AuthController {
             "Hash2 (nouveau) matches 'azerty123': " + match2;
     }
 }
-/*
-    @PostMapping("/debug-register")
-    public String debugRegister(@RequestBody UserDto request) {
-        System.out.println("=== DEBUG REGISTER ===");
-        System.out.println("Email: " + request.getEmail());
-        System.out.println("Password reçu: " + request.getPassword());
-        
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String hashedPassword = encoder.encode(request.getPassword());
-        System.out.println("Password hashé: " + hashedPassword);
-        
-        User user = new User();
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setEmail(request.getEmail());
-        user.setPassword(hashedPassword);
-        
-        System.out.println("Avant save - Password dans User: " + user.getPassword());
-        
-        User saved = userDao.save(user);
-        
-        System.out.println("Après save - Password dans User: " + saved.getPassword());
-        
-        return "OK - Vérifiez en BDD";
-    }
-}
-
-
-    
-
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody UserDto userDto) {
-        User user = authService.register(userDto);
-        return ResponseEntity.ok(user);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User credentials) {
-        User user = userService.getUserByEmail(credentials.getEmail());
-
-        if (user == null) {
-            return ResponseEntity.status(404).body("User not found");
-        }
-
-        if (!user.getPassword().equals(credentials.getPassword())) {
-            return ResponseEntity.status(401).body("Invalid password");
-        }
-
-        return ResponseEntity.ok(user);
-    }
-    */
-
-

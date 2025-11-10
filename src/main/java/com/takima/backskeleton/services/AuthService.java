@@ -23,7 +23,7 @@ public class AuthService {
         Optional<User> existingUser = userDao.findByEmail(request.getEmail());
         
         if (existingUser.isPresent()) {
-            System.out.println("❌ Email déjà utilisé: " + request.getEmail());
+            System.out.println(" Email déjà utilisé: " + request.getEmail());
             throw new RuntimeException("Email already exists");
         }
         
@@ -32,11 +32,11 @@ public class AuthService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());  // ✅ Mot de passe en clair
+        user.setPassword(request.getPassword()); 
 
         // Sauvegarder en BDD
         User savedUser = userDao.save(user);
-        System.out.println("✅ Utilisateur créé: " + savedUser.getEmail());
+        System.out.println(" Utilisateur créé: " + savedUser.getEmail());
         
         // Générer token et réponse
         String token = generateToken(savedUser);
@@ -51,24 +51,24 @@ public class AuthService {
     }
 
     public LoginResponse login(UserDto request) {
-        System.out.println("🔵 Tentative login: " + request.getEmail());
+        System.out.println(" Tentative login: " + request.getEmail());
         
         Optional<User> userOpt = userDao.findByEmail(request.getEmail());
         
         if (userOpt.isEmpty()) {
-            System.out.println("❌ Utilisateur non trouvé: " + request.getEmail());
+            System.out.println(" Utilisateur non trouvé: " + request.getEmail());
             throw new RuntimeException("Invalid credentials");
         }
         
         User user = userOpt.get();
         
-        // ✅ Comparaison simple des mots de passe en clair
+        // Comparaison simple des mots de passe en clair
         if (!request.getPassword().equals(user.getPassword())) {
-            System.out.println("❌ Mot de passe incorrect");
+            System.out.println(" Mot de passe incorrect");
             throw new RuntimeException("Invalid credentials");
         }
         
-        System.out.println("✅ Login réussi !");
+        System.out.println(" Login réussi !");
         
         // Générer token et réponse
         String token = generateToken(user);
