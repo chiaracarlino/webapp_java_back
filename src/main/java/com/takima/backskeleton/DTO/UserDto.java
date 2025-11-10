@@ -2,7 +2,7 @@ package com.takima.backskeleton.DTO;
 
 import com.takima.backskeleton.models.User;
 import com.takima.backskeleton.models.Portfolio;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;
 import java.util.List;
 public class UserDto {
@@ -32,4 +32,17 @@ public class UserDto {
     public void setEmail(String email) { this.email = email; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+
+    @JsonProperty("prenom")
+    public void setPrenom(String prenom) {
+        System.out.println("🔵 setPrenom appelé avec: " + prenom);
+        this.firstName = prenom;
+    }
+
+    @JsonProperty("nom")
+    public void setNom(String nom) {
+        System.out.println("🔵 setNom appelé avec: " + nom);
+        this.lastName = nom;
+    }
+
 }

@@ -49,7 +49,12 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<LoginResponse> register(@RequestBody UserDto request) {
         System.out.println("🔵 Register endpoint appelé");
-        //
+        System.out.println("=== REGISTER START ===");
+        System.out.println("FirstName: " + request.getFirstName());
+        System.out.println("LastName: " + request.getLastName());
+        System.out.println("Email: " + request.getEmail());
+        System.out.println("Password présent: " + (request.getPassword() != null));
+        
         //BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         //String hashedPassword = encoder.encode(request.getPassword());
         //
